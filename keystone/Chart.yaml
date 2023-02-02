@@ -1,0 +1,17 @@
+apiVersion: v2
+name: keystone
+description: A Helm chart for Openstack Keystone
+
+type: application
+
+version: 0.1.0
+
+appVersion: "21.0.0"
+
+dependencies:
+- name: mariadb
+  version: "11.4.4"
+  repository: "https://charts.bitnami.com/bitnami"
+- name: memcached
+  version: "6.3.5"
+  repository: "https://charts.bitnami.com/bitnami"

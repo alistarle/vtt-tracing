@@ -1,0 +1,15 @@
+CHART NAME: {{ .Chart.Name }}
+CHART VERSION: {{ .Chart.Version }}
+APP VERSION: {{ .Chart.AppVersion }}
+
+** Please be patient while the chart is being deployed **
+
+Connect to openstack with the following variables:
+
+export OS_USERNAME=admin
+export OS_PASSWORD={{ .Values.password }}
+export OS_PROJECT_NAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_AUTH_URL=https://{{ .Values.domain }}/v3/
+export OS_IDENTITY_API_VERSION=3

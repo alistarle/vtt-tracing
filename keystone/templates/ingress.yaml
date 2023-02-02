@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keystone
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.domain }}
+    secretName: xip-opensteak-fr-tls
+  rules:
+  - host: {{ .Values.domain }}
+    http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: keystone
+              port:
+                number: 5000

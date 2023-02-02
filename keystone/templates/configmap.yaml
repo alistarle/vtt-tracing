@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keystone-conf
+data:
+  keystone.conf: |
+    [database]
+    connection = mysql+pymysql://{{ .Values.mariadb.auth.username }}:{{ .Values.mariadb.auth.password }}@keystone-mariadb.default.svc.cluster.local/keystone
+    [cache]
+    backend = oslo_cache.memcache_pool
+    enabled = true
+    memcache_servers = keystone-memcached.default.svc.cluster.local:11211
+  0: |
+    "IytEr50hW0rsmA9dfhPc6vBJe1KN8MoPFJxy2ARv_S0="
+  1: |
+    "kcDENFZQ6cLCvMliOgZjZB4y1Tf0AyX6Oed7HP0ylf8="

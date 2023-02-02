@@ -1,0 +1,9 @@
+global:
+    podSecurityPolicy:
+        enabled: false
+        useAppArmor: false
+installCRDs: true
+ingressShim:
+    defaultIssuerName: letsencrypt-prod
+    defaultIssuerKind: ClusterIssuer
+    defaultIssuerGroup: cert-manager.io

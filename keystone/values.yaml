@@ -1,0 +1,10 @@
+domain: keystone.57.128.91.118.xip.opensteak.fr
+
+password: admin
+
+mariadb:
+  auth:
+    rootPassword: "sdlkcsdlckjlksjç12409218409UJl,.."
+    database: keystone
+    username: keystone
+    password: "AZLKFJQ931U982TYHFOIDKNcjkdsnjks.."

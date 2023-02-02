@@ -1,0 +1,47 @@
+global:
+  rbac:
+    pspEnabled: false
+
+grafana:
+  image:
+    tag: "9.3.6"
+  adminPassword: "changeme"
+  ingress:
+    enabled: true
+    hosts:
+    - grafana.57.128.91.118.xip.opensteak.fr # TO REPLACE WITH YOUR IP
+    tls:
+    - secretName: grafana-preprod-tls
+      hosts:
+      - grafana.57.128.91.118.xip.opensteak.fr # TO REPLACE WITH YOUR IP
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      kubernetes.io/tls-acme: "true"
+  sidecar:
+    dashboard:
+      searchNamespace: "ALL"
+      folderAnnotation: grafana_folder
+    datasources:
+      defaultDatasourceEnabled: false
+  persistence:
+    enabled: true
+    size: 1Gi
+  additionalDataSources:
+  - name: Prometheus
+    orgId: 1
+    type: prometheus
+    url: http://kube-prometheus-stack-prometheus:9090/
+    version: 1
+    default: true
+
+prometheus:
+  prometheusSpec:
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    securityContext:
+      fsGroup: 0
+      runAsGroup: 0
+      runAsNonRoot: false
+      runAsUser: 0
